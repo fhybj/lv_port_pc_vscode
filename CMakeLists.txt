@@ -86,17 +86,20 @@ FILE(GLOB_RECURSE SOURCES "*.c")
 LIST(FILTER SOURCES EXCLUDE REGEX "\\.\\.")
 LIST(FILTER SOURCES EXCLUDE REGEX "build")
 
+add_subdirectory(coffee)
+
 # 创建可执行文件
 ADD_EXECUTABLE(demo ${SOURCES})
 
 # 链接库
-TARGET_LINK_LIBRARIES(demo PRIVATE ${LIBS})
+TARGET_LINK_LIBRARIES(demo PRIVATE ${LIBS} coffee_project)
 
 # 包含头文件路径
 INCLUDE_DIRECTORIES(
     ${PROJECT_SOURCE_DIR}/ui/simulator/inc
     ${PROJECT_SOURCE_DIR}
     ${PROJECT_SOURCE_DIR}/lvgl
+    ${PROJECT_SOURCE_DIR}/coffee
 )
 
 # 安装目标
