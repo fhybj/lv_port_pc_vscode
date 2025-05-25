@@ -4,6 +4,7 @@
 
 #include "lvgl/lvgl.h"
 #include "lang_id.h"
+#include "app_theme.h"
 
 #ifdef __cplusplus
 extern "C" {

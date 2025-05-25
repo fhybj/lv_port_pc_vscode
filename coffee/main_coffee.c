@@ -29,7 +29,7 @@ void coffee_app_init(void) {
     ui_init();
 
     // 6. 初始化通信模块 (启动模拟定时器)
-    comm_init();
+    // comm_init();
 
     // 7. 加载启动屏
     ui_load_splash_screen();

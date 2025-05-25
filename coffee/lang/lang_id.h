@@ -14,6 +14,7 @@ typedef enum {
 
 typedef enum {
     STR_EMPTY = 0,
+    STR_LANG,
     STR_WELCOME,
     STR_ESPRESSO,
     STR_LATTE,

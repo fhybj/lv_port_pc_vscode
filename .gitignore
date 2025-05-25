@@ -10,3 +10,4 @@ ui/
 # VSCode
 !.vscode/
 !.vscode/*
+.DS_Store

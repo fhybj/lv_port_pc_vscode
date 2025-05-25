@@ -3,6 +3,7 @@
 
 const char * const lang_en[STR_COUNT] = {
     [STR_EMPTY] = "",
+    [STR_LANG] = "EN",
     [STR_WELCOME] = "Welcome to Coffee Machine!",
     [STR_ESPRESSO] = "Espresso",
     [STR_LATTE] = "Latte",
@@ -23,6 +24,7 @@ const char * const lang_en[STR_COUNT] = {
 
 const char * const lang_zh_cn[STR_COUNT] = {
     [STR_EMPTY] = "",
+    [STR_LANG] = "中文",
     [STR_WELCOME] = "欢迎使用咖啡机！",
     [STR_ESPRESSO] = "浓缩咖啡",
     [STR_LATTE] = "拿铁",

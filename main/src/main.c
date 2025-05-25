@@ -193,6 +193,8 @@ int main(int argc, char **argv)
 //  lv_example_label_1();
 // lv_example_qrcode_1();
 // lv_example_tiny_ttf_1();
+  // lv_example_tiny_ttf_2();
+  // lv_example_rlottie_2();
 
   // lv_demo_widgets();
 //  lv_demo_keypad_encoder();
