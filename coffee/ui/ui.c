@@ -9,10 +9,10 @@
 #include "lang/lang_manager.h"
 
 // 声明所有屏幕对象 (这些会在各自的screen_init中创建)
-lv_obj_t *splash_screen;
+// lv_obj_t *splash_screen;
 lv_obj_t *main_screen; // 模拟主屏幕
-lv_obj_t *making_screen;
-lv_obj_t *info_screen;
+// lv_obj_t *making_screen;
+// lv_obj_t *info_screen;
 
 // 模拟主屏幕事件回调
 static void main_screen_btn_event_cb(lv_event_t *e) {
@@ -99,7 +99,7 @@ void ui_load_splash_screen(void) {
     status_bar_hide(); // 启动屏不显示状态栏
 
     // 模拟启动屏显示一段时间后自动切换到主屏幕
-    lv_timer_t *timer = lv_timer_create((lv_timer_cb_t)ui_load_main_screen, 2000, NULL); // 2秒后切换
+    lv_timer_t *timer = lv_timer_create((lv_timer_cb_t)ui_load_main_screen, 10000, NULL); // 2秒后切换
     lv_timer_set_repeat_count(timer, 1);
 }
 
