@@ -57,47 +57,52 @@ static inline double timer_elapsed_s(Timer* t) {
 // 用于存储当前加载的动画实例
 static packed_animation_t g_current_animation;
 
+extern lv_img_dsc_t* ui_anim_create(const char* path);
+
 void screen_splash_init(void) {
-    Timer timer;
+    // Timer timer;
     
-    timer_start(&timer);
-    if (!packed_anim_loader_init(MAX_ANIMATION_FILE_SIZE)) {
-        LV_LOG_USER("Failed to initialize packed animation loader. Exiting.");
-        return; // 处理错误，可能无法继续
-    }
-    timer_end(&timer);
-    LV_LOG_USER("anim init: %.3f us, %.3f ms\n", timer_elapsed_us(&timer), timer_elapsed_ms(&timer));
+    // timer_start(&timer);
+    // if (!packed_anim_loader_init(MAX_ANIMATION_FILE_SIZE)) {
+    //     LV_LOG_USER("Failed to initialize packed animation loader. Exiting.");
+    //     return; // 处理错误，可能无法继续
+    // }
+    // timer_end(&timer);
+    // LV_LOG_USER("anim init: %.3f us, %.3f ms\n", timer_elapsed_us(&timer), timer_elapsed_ms(&timer));
 
-    timer_start(&timer);
-    // packed_anim_load(BOOT_ANIM, &g_current_animation);
-    if (packed_anim_load(BOOT_ANIM, &g_current_animation)) {
-        // 设置LVGL动画源和持续时间
-        LV_LOG_USER("Animation started successfully. Frame count: %u.",
-                    g_current_animation.frame_count);
-    } else {
-        LV_LOG_USER("Failed to load animation from %s.", BOOT_ANIM);
-        // 如果加载失败，可以显示一个默认图片或错误提示
-    }
-    timer_end(&timer);
-    LV_LOG_USER("load anim file: %.3f us, %.3f ms\n", timer_elapsed_us(&timer), timer_elapsed_ms(&timer));
+    // timer_start(&timer);
+    // // packed_anim_load(BOOT_ANIM, &g_current_animation);
+    // if (packed_anim_load(BOOT_ANIM, &g_current_animation)) {
+    //     // 设置LVGL动画源和持续时间
+    //     LV_LOG_USER("Animation started successfully. Frame count: %u.",
+    //                 g_current_animation.frame_count);
+    // } else {
+    //     LV_LOG_USER("Failed to load animation from %s.", BOOT_ANIM);
+    //     // 如果加载失败，可以显示一个默认图片或错误提示
+    // }
+    // timer_end(&timer);
+    // LV_LOG_USER("load anim file: %.3f us, %.3f ms\n", timer_elapsed_us(&timer), timer_elapsed_ms(&timer));
 
-    // lv_img_dsc_t *bg_dsc = g_current_animation.frames_ptrs[g_current_animation.frame_count-1];
+    // // lv_img_dsc_t *bg_dsc = g_current_animation.frames_ptrs[g_current_animation.frame_count-1];
     // LV_LOG_USER("data_size: %u, high: %u, width: %u, cf: %u, allow_zero: %u", bg_dsc->data_size, bg_dsc->header.h, bg_dsc->header.w, bg_dsc->header.cf, bg_dsc->header.always_zero);
 
     splash_screen = lv_obj_create(NULL);
     lv_obj_clear_flag(splash_screen, LV_OBJ_FLAG_SCROLLABLE);
 
-    lv_obj_t * bg = lv_animimg_create(splash_screen);
-    // lv_obj_t * bg = lv_img_create(splash_screen);
+    lv_img_dsc_t *bg_dsc = ui_anim_create(BOOT_ANIM);
+
+    // lv_obj_t * bg = lv_animimg_create(splash_screen);
+    lv_obj_t * bg = lv_img_create(splash_screen);
     // lv_img_set_src(bg, g_current_animation.frames_ptrs[g_current_animation.frame_count-1]);
+    lv_img_set_src(bg, bg_dsc);
     lv_obj_set_width(bg, LV_PCT(100));
     lv_obj_set_height(bg, LV_PCT(100));
     lv_obj_center(bg);
 
-    lv_animimg_set_src(bg, (const void **) g_current_animation.frames_ptrs, g_current_animation.frame_count);
-    lv_animimg_set_duration(bg, g_current_animation.frame_count * (1000 / 30));
-    lv_animimg_set_repeat_count(bg, LV_ANIM_REPEAT_INFINITE);
-    lv_animimg_start(bg);
+    // lv_animimg_set_src(bg, (const void **) g_current_animation.frames_ptrs, g_current_animation.frame_count);
+    // lv_animimg_set_duration(bg, g_current_animation.frame_count * (1000 / 30));
+    // lv_animimg_set_repeat_count(bg, LV_ANIM_REPEAT_INFINITE);
+    // lv_animimg_start(bg);
 
     lv_obj_t *label = CREATE_TRANSLATED_LABEL(splash_screen, STR_WELCOME);
     lv_obj_center(label);
